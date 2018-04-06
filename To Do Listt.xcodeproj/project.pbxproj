@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DE327B9D4521FE591E0B8AB /* Pods_To_Do_Listt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFCDF025D96861F0B73E1A8 /* Pods_To_Do_Listt.framework */; };
 		41387EC820678D9B00A1DEF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41387EC720678D9B00A1DEF8 /* AppDelegate.swift */; };
 		41387ECA20678D9B00A1DEF8 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41387EC920678D9B00A1DEF8 /* ToDoListViewController.swift */; };
 		41387ECD20678D9B00A1DEF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41387ECB20678D9B00A1DEF8 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A81C64DCB9A3E4ACAE747EF /* Pods-To Do Listt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-To Do Listt.release.xcconfig"; path = "Pods/Target Support Files/Pods-To Do Listt/Pods-To Do Listt.release.xcconfig"; sourceTree = "<group>"; };
 		41387EC420678D9B00A1DEF8 /* To Do Listt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To Do Listt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41387EC720678D9B00A1DEF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41387EC920678D9B00A1DEF8 /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		41387ED420678D9C00A1DEF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41387ED620678D9C00A1DEF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41939FAA2074E4D900E6F802 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		6217AA84A7F4CCA319185977 /* Pods-To Do Listt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-To Do Listt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-To Do Listt/Pods-To Do Listt.debug.xcconfig"; sourceTree = "<group>"; };
+		BDFCDF025D96861F0B73E1A8 /* Pods_To_Do_Listt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_To_Do_Listt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DE327B9D4521FE591E0B8AB /* Pods_To_Do_Listt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				41387EC620678D9B00A1DEF8 /* To Do Listt */,
 				41387EC520678D9B00A1DEF8 /* Products */,
+				A2967C209FCCCD207A6DDBEF /* Pods */,
+				4DDA2115AE5DFA65E4E32573 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +109,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4DDA2115AE5DFA65E4E32573 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDFCDF025D96861F0B73E1A8 /* Pods_To_Do_Listt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2967C209FCCCD207A6DDBEF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6217AA84A7F4CCA319185977 /* Pods-To Do Listt.debug.xcconfig */,
+				2A81C64DCB9A3E4ACAE747EF /* Pods-To Do Listt.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41387ED920678D9C00A1DEF8 /* Build configuration list for PBXNativeTarget "To Do Listt" */;
 			buildPhases = (
+				6871E4E53F695325333F5C65 /* [CP] Check Pods Manifest.lock */,
 				41387EC020678D9B00A1DEF8 /* Sources */,
 				41387EC120678D9B00A1DEF8 /* Frameworks */,
 				41387EC220678D9B00A1DEF8 /* Resources */,
+				F7D9973183A955369015D9A5 /* [CP] Embed Pods Frameworks */,
+				1E846763660B4A7631DC124F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +195,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E846763660B4A7631DC124F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-To Do Listt/Pods-To Do Listt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6871E4E53F695325333F5C65 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-To Do Listt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7D9973183A955369015D9A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-To Do Listt/Pods-To Do Listt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-To Do Listt/Pods-To Do Listt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		41387EC020678D9B00A1DEF8 /* Sources */ = {
@@ -312,6 +395,7 @@
 		};
 		41387EDA20678D9C00A1DEF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6217AA84A7F4CCA319185977 /* Pods-To Do Listt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -326,6 +410,7 @@
 		};
 		41387EDB20678D9C00A1DEF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A81C64DCB9A3E4ACAE747EF /* Pods-To Do Listt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

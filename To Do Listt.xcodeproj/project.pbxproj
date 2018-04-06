@@ -13,6 +13,7 @@
 		41387ED020678D9B00A1DEF8 /* To_Do_Listt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41387ECE20678D9B00A1DEF8 /* To_Do_Listt.xcdatamodeld */; };
 		41387ED220678D9B00A1DEF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41387ED120678D9B00A1DEF8 /* Assets.xcassets */; };
 		41387ED520678D9C00A1DEF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41387ED320678D9C00A1DEF8 /* LaunchScreen.storyboard */; };
+		41939FAB2074E4D900E6F802 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41939FAA2074E4D900E6F802 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		41387ED120678D9B00A1DEF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41387ED420678D9C00A1DEF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41387ED620678D9C00A1DEF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41939FAA2074E4D900E6F802 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		41387EDC20678DF800A1DEF8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				41939FAA2074E4D900E6F802 /* CategoryViewController.swift */,
 				41387EC920678D9B00A1DEF8 /* ToDoListViewController.swift */,
 			);
 			path = Controllers;
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41939FAB2074E4D900E6F802 /* CategoryViewController.swift in Sources */,
 				41387ED020678D9B00A1DEF8 /* To_Do_Listt.xcdatamodeld in Sources */,
 				41387ECA20678D9B00A1DEF8 /* ToDoListViewController.swift in Sources */,
 				41387EC820678D9B00A1DEF8 /* AppDelegate.swift in Sources */,

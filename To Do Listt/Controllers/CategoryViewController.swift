@@ -8,21 +8,37 @@
 
 import UIKit
 import CoreData
-
-
-/* Those statements whose comments are not given,
- and you have any doubt on them, then first go
- through the ToDoListViewController.swift file.*/
+import RealmSwift
 
 
 class CategoryViewController: UITableViewController
 {
-    // Creating an array of type Category entity.
+    /* Here we are creating a Realm object i.e.
+     initializing Realm.  As we know that creating
+     a Realm object may throw an error, but because
+     we have initialized it even before in
+     AppDelegate file, therefore, it's absolutely
+     fine to implicitly unwrap the try rather than
+     dealing with it within do-catch block as it
+     is mentioned in it's documentation too. */
     
-    var categories = [Category]()
+    let realm = try! Realm()
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    /* Here we are creating a variable of Results
+     type that will contain the Categories stored
+     in Realm DB.
+     
+     We have declared it optional because we are
+     not initializing it here.
+     
+     Results is an auto-updating container
+     type in Realm, which is a sort of array,
+     dictionary, list etc, and gets returned when
+     we query the the Realm DB.
+     */
+    
+    var categories: Results<Category>?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -40,23 +56,26 @@ class CategoryViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return categories.count
+        
+        /* This below statement is an example of Nil
+         Coalescing Operator.
+         
+         We are saying here that if categories
+         is not NIL, which it could be because it's an
+         optional, then return the count of Categories;
+         and if it's NIL, then just return 1. */
+        
+        return categories?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         
-        /* In ToDoListViewController file we have done
-         this below thing slightly different way.  And
-         the reason for that is, we have two attributes
-         in Item entity (that we accessing in
-         ToDoListViewController), but here we have only
-         one attribute in Category entity, which is name.
-         Therefore, we have done the required thing in
-         only one statement here. */
+        /* Here again we have used the Nil Coalescing
+         Operator. */
         
-        cell.textLabel?.text = categories[indexPath.row].name
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet!"
         
         return cell
     }
@@ -99,13 +118,13 @@ class CategoryViewController: UITableViewController
          which means that there is a possiblity that no
          row is selected.  It's not possible here bcz we
          are only triggering out segue when user selects
-         a row.  Still, bcz it's an optional therefore
+         a row.  Still, bcz it's an Optional therefore
          we are blending it with IF statement.
          */
         
         if let indexPath = tableView.indexPathForSelectedRow
         {
-            destinationVC.selectedCategory = categories[indexPath.row]
+            destinationVC.selectedCategory = categories?[indexPath.row]
         }
     }
     
@@ -115,12 +134,18 @@ class CategoryViewController: UITableViewController
     
     //MARK:  Data Manipulation Methods
     
-    // this user-defined method is to save new categories
-    func saveCategories()
+    /* this user-defined method is to save new categories.
+     If have any doubt on the below set of code, then plz
+     go through the Realm topic. */
+    
+    func save(category: Category)
     {
         do
         {
-            try context.save()
+            try realm.write
+            {
+                realm.add(category)
+            }
         }
         catch
         {
@@ -133,42 +158,17 @@ class CategoryViewController: UITableViewController
     
     
     /* This is the user-defined method to retrieve the
-     data i.e. categories from the persistent store
-     so that we could display that data in our Table
-     View. */
+     data i.e. categories from the persistent store i.e.
+     Realm so that we could display that data in our
+     Table View. */
     
     func loadCategories()
     {
-        /* Now this is basically a Read operation of the
-        CRUD methodology.
-
-        Here we are fetching the data from our persistent
-        store so that could display that on the Table View.
-
-        And for that we are using a type called
-        NSFetchRequest.  But we also need to mention that
-        what kind of data NSFetchRequest will fetch,
-        therefore, we need to specify a type for the
-        NSFetchRequest type itself, and that type is
-        CATEGORY.
-
-        So, what exactly we doing here, declaring a var
-        request of type NSFetchRequest<Category> and
-        storing the value of Category.fetchRequest method
-        inside it.
-         */
+        /* Here we are fetching all the items (Categories)
+         from the Realm database. */
         
-        let request : NSFetchRequest<Category> = Category.fetchRequest()
+        categories = realm.objects(Category.self)
         
-        do
-        {
-            categories = try context.fetch(request)
-        }
-        catch
-        {
-            print("Error loading categories: \(error)")
-        }
-            
         tableView.reloadData()
     }
     
@@ -186,13 +186,27 @@ class CategoryViewController: UITableViewController
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            let newCategory = Category(context: self.context)
+            
+            let newCategory = Category()
             
             newCategory.name = textField.text!
             
-            self.categories.append(newCategory)
             
-            self.saveCategories()
+            /* While using Core Data, we need to append
+             the newly added category to the list of
+             Categories.  But, in case of Realm, the
+             Results data-type is auto-updating container,
+             therefore, we don't need the below statement,
+             hence we have commented out it.
+            
+             self.categories.append(newCategory)
+             */
+            
+            
+            /* Calling the SAVE method and passing the
+             newCategory as a value to it. */
+            
+            self.save(category: newCategory)
         }
         
         

@@ -7,11 +7,14 @@
 //
 
 import UIKit
-import CoreData
 import RealmSwift
+import SwipeCellKit
 
 
-class CategoryViewController: UITableViewController
+/* We are inheriting our class from the
+ SwipeTableViewController class. */
+
+class CategoryViewController: SwipeTableViewController
 {
     /* Here we are creating a Realm object i.e.
      initializing Realm.  As we know that creating
@@ -44,7 +47,6 @@ class CategoryViewController: UITableViewController
         super.viewDidLoad()
         
         loadCategories()
-
         
     }
     
@@ -68,9 +70,23 @@ class CategoryViewController: UITableViewController
         return categories?.count ?? 1
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        /* Here we are creating a variable (cell) of
+         type of our super class i.e.
+         SwipeTableViewController.  We are doing this
+         so that our cell of CategoryViewController
+         inherit the swipe effect from the super class.
+         
+         If have any doubt that what is happening here,
+         please refer to the video - Inheriting from
+         SwipeTableViewController (Section 19, Lecture
+         269, somewhere at 8.40 minutes)
+         */
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         /* Here again we have used the Nil Coalescing
          Operator. */
@@ -174,6 +190,35 @@ class CategoryViewController: UITableViewController
     
     
     
+    /* This is also a user-defined method that we have
+     defined inside SwipeTableViewController file for
+     performing delete operations.
+     
+     Here we are simply overriding that method and
+     putting a relevant code.*/
+    
+    override func updateModel(at indexPath: IndexPath)
+    {
+        if let categoryForDeletion = self.categories?[indexPath.row]
+        {
+            do
+            {
+                try self.realm.write
+                {
+                    self.realm.delete(categoryForDeletion)
+                }
+            }
+            catch
+            {
+                print("Error deleting category: \(error)")
+            }
+
+            //tableView.reloadData()
+        }
+    }
+    
+    
+    
     
     /********************************/
     
@@ -220,8 +265,6 @@ class CategoryViewController: UITableViewController
         present(alert, animated: true, completion: nil)
     }
     
-
-   
-    
-    
 }
+
+

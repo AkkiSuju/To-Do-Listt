@@ -10,7 +10,10 @@ import UIKit
 import RealmSwift
 
 
-class ToDoListViewController: UITableViewController
+/* We are inheriting our class from the
+ SwipeTableViewController class. */
+
+class ToDoListViewController: SwipeTableViewController
 {
     
     /* Here we are creating a variable of Results
@@ -97,14 +100,13 @@ class ToDoListViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt
         indexPath: IndexPath) -> UITableViewCell
     {
-        /* As we have mentioned in the begining of
-         the topic that if we use Table View
-         Controller then we don't have to link the
-         IBOutlets.  tableView is a varibale set by
-         default by the Table View Controller*/
         
-        let cell = tableView.dequeueReusableCell(withIdentifier:
-            "ToDoItemCell", for: indexPath)
+        /* Here we are creating a variable (cell) of
+         type of our super class i.e.
+         SwipeTableViewController. You can get rest of
+         the explanation in CategoryViewController. */
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let item = toDoItems?[indexPath.row]
         {
@@ -316,6 +318,32 @@ class ToDoListViewController: UITableViewController
         toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         
         tableView.reloadData()
+    }
+    
+    
+    
+    /* This is also a user-defined method that we have
+     defined inside SwipeTableViewController file for
+     performing delete operations.
+     
+     Here we are simply overriding that method and
+     putting a relevant code.*/
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let item = toDoItems?[indexPath.row]
+        {
+            do
+            {
+                try realm.write
+                {
+                    realm.delete(item)
+                }
+            }
+            catch
+            {
+                print("Error deleting Item: \(error)")
+            }
+        }
     }
     
 }

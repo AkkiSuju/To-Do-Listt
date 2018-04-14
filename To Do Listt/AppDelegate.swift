@@ -21,7 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /* Creating a Ralm object i.e. initializing
          Realm, and because it could throw an error,
-         therefore, dealing it with do-catch block. */
+         therefore, dealing it with do-catch block.
+         
+         In Swift, when we initialize a variable/object,
+         but never use it, then rather than giving it
+         a name, we simply replace with underscore (_).
+         
+         The Realm object we are creating here is not
+         going to use anywhere within this file.  We
+         are initializing it just to ensure that all
+         is well while setting it up. */
         
         do
         {

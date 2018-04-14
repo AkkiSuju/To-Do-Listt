@@ -13,6 +13,17 @@ class Category: Object
 {
     @objc dynamic var name: String = ""
     
+    
+    /* This is to store the colour of the row
+     that will be implemented on our row with
+     Chameleon Framework, persistently in our
+     Database.
+     
+     We will store the colour value in hexa-decimal
+     format. */
+    
+    @objc dynamic var colour: String = ""
+    
     /* Here we are setting up a forward relationship.
      
      In Core Data, we don't have to do relationship

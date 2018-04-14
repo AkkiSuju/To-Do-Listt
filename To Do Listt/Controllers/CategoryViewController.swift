@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import SwipeCellKit
+import ChameleonFramework
 
 
 /* We are inheriting our class from the
@@ -46,6 +46,9 @@ class CategoryViewController: SwipeTableViewController
     {
         super.viewDidLoad()
         
+        // this is to remove the row lines
+        tableView.separatorStyle = .none
+        
         loadCategories()
         
     }
@@ -60,7 +63,8 @@ class CategoryViewController: SwipeTableViewController
     {
         
         /* This below statement is an example of Nil
-         Coalescing Operator.
+         Coalescing Operator.  This is also called
+         Optional Chaining.
          
          We are saying here that if categories
          is not NIL, which it could be because it's an
@@ -92,6 +96,71 @@ class CategoryViewController: SwipeTableViewController
          Operator. */
         
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet!"
+        
+        
+        /* Here we are setting random colours for our
+         rows.  This method comes from the Chameleon
+         Framework, and we came to know about it by
+         going through the documentation available
+         on GitHub/CocoaPods.
+         
+         We even could have a very simple statement as
+         given below to apply the random colour -
+         
+         cell.backgroundColor = UIColor.randomFlat
+         
+         But, the problem with this above statement is,
+         it generates a random colour for our rows that
+         keeps on changing after every re-load.  To keep
+         the colour unchanged for a row, we need to
+         persist it i.e. store it in our DB, and for that
+         we need to get colour's hex-value.
+         
+         We are grabbing the hex-value of the colour
+         below, inside addButtonPressed method, and
+         retrieving that here to implement on the cell.
+         
+         Here we are doing Optional Chaining that says,
+         if CATEGORIES is not NIL then grab the colour
+         (hex-value), and apply on the cell; else, use
+         the default colour (1D9BF6), which we have
+         explicitly defined here, on the cell.
+         */
+        
+        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].colour ?? "1D9BF6")
+        
+        /* Don't bother about the too many exclamation
+         marks in the statement; they all are the result
+         of suggestions provided by Xcode, and I think
+         doing force-unwrapping here is safe. */
+        
+        cell.textLabel?.textColor = ContrastColorOf(UIColor(hexString: (categories?[indexPath.row].colour)!)!, returnFlat: true)
+        
+        
+        
+        /* Note:
+         For the above three statements, Angela has
+         used this below block of code isntead.  I haven't
+         used it because there was too much and imp to
+         explain about the above statements.  However,
+         I would prefer Angela's code if ever i create
+         this app for commercial or professional
+         purpose.
+         
+         Angela's code is -
+         
+         if let category = categories?[indexPath.row]
+         {
+         cell.textLabel?.text = category.name
+         
+         guard let categoryColour = UIColor(hexString: category.colour) else {fatalError()}
+         
+         cell.backgroundColor = categoryColour
+         
+         cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+         }
+         
+         */
         
         return cell
     }
@@ -235,6 +304,14 @@ class CategoryViewController: SwipeTableViewController
             let newCategory = Category()
             
             newCategory.name = textField.text!
+            
+            
+            /* Here we are storing the hex value of the
+             colour obtained by the randomFlat method.
+             This colour value will be persisted when
+             we call the SAVE method below. */
+            
+            newCategory.colour = UIColor.randomFlat.hexValue()
             
             
             /* While using Core Data, we need to append
